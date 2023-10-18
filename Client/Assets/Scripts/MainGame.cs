@@ -14,26 +14,15 @@ public class MainGame : MonoBehaviour
 
     void Start()
     {
-        GameObject tankObj = new GameObject("MyTank");
-        tankObj.transform.position = Vector3.zero + new Vector3(10, 1, 10);
-        CtrlTank tank = tankObj.AddComponent<CtrlTank>();
-        tank.Init("Tank1");
-        tankObj.AddComponent<CameraFollow>();
+        PanelManager.Init();
+        PanelManager.Open<LoginPanel>();
 
-        GameObject tankObj2 = new GameObject("EnemyTank");
-        tankObj2.transform.position = Vector3.zero + new Vector3(20, 1, 20);
-        BaseTank tank2 = tankObj2.AddComponent<BaseTank>();
-        tank2.Init("Tank1");
-
-        NetManager.Connect("127.0.0.1", 8888);
-        NetManager.AddMsgListener("MsgMove", OnMove);
-
-        //NetManager.AddEventListener(NetEvent.ConnectSuccess, OnConnectSuccess);
-        //NetManager.AddEventListener(NetEvent.ConnectFail, OnConnectFail);
-        //NetManager.AddEventListener(NetEvent.Close, OnConnectClose);
+        //GameObject tankObj2 = new GameObject("EnemyTank");
+        //tankObj2.transform.position = Vector3.zero + new Vector3(20, 1, 20);
+        //BaseTank tank2 = tankObj2.AddComponent<BaseTank>();
+        //tank2.Init("Tank1");
 
         NetManager.AddMsgListener("MsgRegister", OnMsgRegister);
-        NetManager.AddMsgListener("MsgLogin", OnMsgLogin);
         NetManager.AddMsgListener("MsgKick", OnMsgKick);
         NetManager.AddMsgListener("MsgGetText", OnMsgGetText);
         NetManager.AddMsgListener("MsgSaveText", OnMsgSaveText);

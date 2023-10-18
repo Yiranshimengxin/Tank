@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PanelManager : MonoBehaviour
 {
-    //Layer
+    //Layer 
     public enum Layer
     {
         Panel,

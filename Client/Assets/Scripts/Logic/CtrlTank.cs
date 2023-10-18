@@ -28,7 +28,7 @@ public class CtrlTank : BaseTank
     public void MoveUpdate()
     {
         //已经死亡
-        if(IsDie())
+        if (IsDie())
         {
             return;
         }
@@ -48,19 +48,43 @@ public class CtrlTank : BaseTank
             return;
         }
         //或者轴向
-        float axis = 0;
+        float axisX = 0;
         if (Input.GetKey(KeyCode.Q))
         {
-            axis = -1;
+            axisX = -1;
         }
         else if (Input.GetKey(KeyCode.E))
         {
-            axis = 1;
+            axisX = 1;
         }
+
+        //获取鼠标滚轮滚动量
+        float scrollDelta = Input.GetAxis("Mouse ScrollWheel");
+        float minAngle = 8f;
+        float maxAngle = 345f;
+        float m = 20f;
+
         //旋转角度
         Vector3 le = turret.localEulerAngles;
-        le.y += axis * Time.deltaTime * turretSpeed;
+        Vector3 ge = gun.localEulerAngles;
+
+        le.y += axisX * Time.deltaTime * turretSpeed;
         turret.localEulerAngles = le;
+        //限制炮塔旋转角度的范围
+        if (gun.localEulerAngles.x > minAngle && gun.localEulerAngles.x < maxAngle)
+        {
+            if (gun.localEulerAngles.x >= minAngle && gun.localEulerAngles.x < minAngle + 10f)
+            {
+                ge.x = minAngle;
+            }
+            else if (gun.localEulerAngles.x <= maxAngle && gun.localEulerAngles.x > maxAngle - 10f)
+            {
+                ge.x = maxAngle;
+            }
+        }
+        //根据鼠标滚轮滚动量旋转炮塔
+        ge.x += scrollDelta * turretSpeed * Time.deltaTime * m;
+        gun.localEulerAngles = ge;
     }
 
     public void FireUpdate()

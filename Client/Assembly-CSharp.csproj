@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Proto\Sysmsg.cs" />
     <Compile Include="Assets\Scripts\Logic\CtrlTank.cs" />
+    <Compile Include="Assets\Scripts\Panel\TipPanel.cs" />
     <Compile Include="Assets\Scripts\MainGame.cs" />
     <Compile Include="Assets\Scripts\Proto\NotepadMsg.cs" />
     <Compile Include="Assets\Scripts\Logic\BaseTank.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Scripts\Panel\PanelManager.cs" />
     <Compile Include="Assets\Scripts\Panel\BasePanel.cs" />
     <Compile Include="Assets\Scripts\Logic\ResManager.cs" />
+    <Compile Include="Assets\Scripts\Panel\LoginPanel.cs" />
     <Compile Include="Assets\Scripts\ByteArray.cs" />
     <Compile Include="Assets\Scripts\Proto\MsgBase.cs" />
   </ItemGroup>
