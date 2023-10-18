@@ -1,0 +1,9 @@
+C:\Unity\Tank\Server\TankServer\TankServer\obj\Debug\TankServer.csproj.AssemblyReference.cache
+C:\Unity\Tank\Server\TankServer\TankServer\obj\Debug\TankServer.csproj.CoreCompileInputs.cache
+C:\Unity\Tank\Server\TankServer\TankServer\bin\Debug\TankServer.exe.config
+C:\Unity\Tank\Server\TankServer\TankServer\bin\Debug\TankServer.exe
+C:\Unity\Tank\Server\TankServer\TankServer\bin\Debug\TankServer.pdb
+C:\Unity\Tank\Server\TankServer\TankServer\bin\Debug\MySql.Data.dll
+C:\Unity\Tank\Server\TankServer\TankServer\obj\Debug\TankServer.csproj.CopyComplete
+C:\Unity\Tank\Server\TankServer\TankServer\obj\Debug\TankServer.exe
+C:\Unity\Tank\Server\TankServer\TankServer\obj\Debug\TankServer.pdb
