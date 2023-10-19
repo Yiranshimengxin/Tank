@@ -108,6 +108,6 @@ public class LoginPanel : BasePanel
     //当按下注册按钮
     public void OnRegisterClick()
     {
-        //PanelManager.Open<RegisterPanel>();
+        PanelManager.Open<RegisterPanel>();
     }
 }

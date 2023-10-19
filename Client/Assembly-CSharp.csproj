@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Proto\NotepadMsg.cs" />
     <Compile Include="Assets\Scripts\Logic\BaseTank.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Panel\RegisterPanel.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Proto\MsgMove.cs" />
     <Compile Include="Assets\Scripts\NetManager.cs" />

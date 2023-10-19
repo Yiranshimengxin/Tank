@@ -9,3 +9,9 @@
 更新了登录面板LoginPanel，目前可以通过LoginPanel进入游戏界面。
 
 ——2023.10.18
+
+
+
+制作了注册面板RegisterPanel。
+
+——2023.10.19
