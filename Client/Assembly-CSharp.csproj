@@ -60,21 +60,24 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Proto\Sysmsg.cs" />
     <Compile Include="Assets\Scripts\Logic\CtrlTank.cs" />
+    <Compile Include="Assets\Scripts\Proto\ByteArray.cs" />
     <Compile Include="Assets\Scripts\Panel\TipPanel.cs" />
     <Compile Include="Assets\Scripts\MainGame.cs" />
     <Compile Include="Assets\Scripts\Proto\NotepadMsg.cs" />
     <Compile Include="Assets\Scripts\Logic\BaseTank.cs" />
-    <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Proto\NetManager.cs" />
     <Compile Include="Assets\Scripts\Panel\RegisterPanel.cs" />
-    <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\Logic\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\Mudule\RoomListPanel.cs" />
     <Compile Include="Assets\Scripts\Proto\MsgMove.cs" />
-    <Compile Include="Assets\Scripts\NetManager.cs" />
+    <Compile Include="Assets\Scripts\Proto\RoomMsg.cs" />
     <Compile Include="Assets\Scripts\Panel\PanelManager.cs" />
     <Compile Include="Assets\Scripts\Panel\BasePanel.cs" />
     <Compile Include="Assets\Scripts\Logic\ResManager.cs" />
     <Compile Include="Assets\Scripts\Panel\LoginPanel.cs" />
-    <Compile Include="Assets\Scripts\ByteArray.cs" />
+    <Compile Include="Assets\Scripts\Mudule\RoomPanel.cs" />
     <Compile Include="Assets\Scripts\Proto\MsgBase.cs" />
+    <Compile Include="Assets\Scripts\Logic\Bullet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Hovl Studio\3D Fire and Explosions\Demo scene\HDRP and URP(LWRP).txt" />
@@ -778,6 +781,9 @@
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>

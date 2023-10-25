@@ -27,11 +27,11 @@ public class RegisterPanel : BasePanel
     public override void OnShow(params object[] para)
     {
         //寻找组件
-        inputId=skin.transform.Find("InputId").GetComponent<InputField>();
-        inputPw=skin.transform.Find("InputPw").GetComponent<InputField>();
-        inputRep=skin.transform.Find("InputRep").GetComponent<InputField>();
-        btnRegister=skin.transform.Find("BtnRegister").GetComponent<Button>();
-        btnClose=skin.transform.Find("BtnClose").GetComponent<Button>();
+        inputId = skin.transform.Find("InputId").GetComponent<InputField>();
+        inputPw = skin.transform.Find("InputPw").GetComponent<InputField>();
+        inputRep = skin.transform.Find("InputRep").GetComponent<InputField>();
+        btnRegister = skin.transform.Find("BtnRegister").GetComponent<Button>();
+        btnClose = skin.transform.Find("BtnClose").GetComponent<Button>();
         //监听
         btnRegister.onClick.AddListener(OnRegisterClick);
         btnClose.onClick.AddListener(OnCloseClick);
@@ -62,7 +62,7 @@ public class RegisterPanel : BasePanel
             return;
         }
         //发送
-        MsgRegister msgReg= new MsgRegister();
+        MsgRegister msgReg = new MsgRegister();
         msgReg.id = inputId.text;
         msgReg.pw = inputPw.text;
         NetManager.Send(msgReg);

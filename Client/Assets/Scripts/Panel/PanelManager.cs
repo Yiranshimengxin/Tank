@@ -49,7 +49,7 @@ public class PanelManager : MonoBehaviour
         Transform layer = layers[panel.layer];
         panel.skin.transform.SetParent(layer, false);
         panels.Add(name, panel);
-        panel.OnShow();
+        panel.OnShow(para);
     }
 
     //关闭面板

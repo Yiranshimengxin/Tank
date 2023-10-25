@@ -50,6 +50,8 @@ public class LoginPanel : BasePanel
         if (msg.result == 0)
         {
             Debug.Log("登录成功！");
+            //设置id
+            MainGame.id = msg.id;
             //进入游戏
 
             //添加坦克
