@@ -37,8 +37,8 @@ public class RoomListPanel : BasePanel
         content = skin.transform.Find("ListPanel/ScrollView/Viewport/Content");
         roomObj = skin.transform.Find("Room").gameObject;
         //按钮事件
-        //createButton.onClick.AddListener(OnCreateClick);
-        //reflashButton.onClick.AddListener(OnReflashClick);
+        createButton.onClick.AddListener(OnCreateClick);
+        reflashButton.onClick.AddListener(OnReflashClick);
         //不激活房间
         roomObj.SetActive(false);
         //显示id
@@ -47,8 +47,8 @@ public class RoomListPanel : BasePanel
         //协议监听
         NetManager.AddMsgListener("MsgGetAchieve", OnMsgGetAchieve);
         NetManager.AddMsgListener("MsgGetRoomList", OnMsgGetRoomList);
-        //NetManager.AddMsgListener("MsgCreateRoom", OnMsgCreateRoom);
-        //NetManager.AddMsgListener("MsgEnterRoom", OnMsgEnterRoom);
+        NetManager.AddMsgListener("MsgCreateRoom", OnMsgCreateRoom);
+        NetManager.AddMsgListener("MsgEnterRoom", OnMsgEnterRoom);
         //发送查询
         MsgGetAchieve msgGetAchieve = new MsgGetAchieve();
         NetManager.Send(msgGetAchieve);
@@ -62,8 +62,8 @@ public class RoomListPanel : BasePanel
         //协议监听
         NetManager.RemoveMsgListener("MsgGetAchieve", OnMsgGetAchieve);
         NetManager.RemoveMsgListener("MsgGetRoomList", OnMsgGetRoomList);
-        //NetManager.RemoveMsgListener("MsgCreateRoom", OnMsgCreateRoom);
-        //NetManager.RemoveMsgListener("MsgEnterRoom", OnMsgEnterRoom);
+        NetManager.RemoveMsgListener("MsgCreateRoom", OnMsgCreateRoom);
+        NetManager.RemoveMsgListener("MsgEnterRoom", OnMsgEnterRoom);
     }
 
 
@@ -79,7 +79,7 @@ public class RoomListPanel : BasePanel
     {
         MsgGetRoomList msg = (MsgGetRoomList)msgBase;
         //清除房间列表
-        for(int i = content.childCount - 1; i >= 0; i--)
+        for (int i = content.childCount - 1; i >= 0; i--)
         {
             GameObject go = content.GetChild(i).gameObject;
             Destroy(go);
@@ -102,17 +102,17 @@ public class RoomListPanel : BasePanel
         GameObject go = Instantiate(roomObj);
         go.transform.SetParent(content);
         go.SetActive(true);
-        go.transform.localScale = Vector3.zero;
+        go.transform.localScale = Vector3.one;
         //获取组件
         Transform t = go.transform;
-        Text idText=t.Find("IdText").GetComponent<Text>();
-        Text countText=t.Find("CountText").GetComponent<Text>();
-        Text statusText=t.Find("StatusText").GetComponent<Text>();
-        Button btn=t.Find("JoinButton").GetComponent<Button>();
+        Text idText = t.Find("IdText").GetComponent<Text>();
+        Text countText = t.Find("CountText").GetComponent<Text>();
+        Text statusText = t.Find("StatusText").GetComponent<Text>();
+        Button btn = t.Find("JoinButton").GetComponent<Button>();
         //填充信息
-        idText.text=roomInfo.id.ToString();
-        countText.text=roomInfo.count.ToString();
-        if(roomInfo.status == 0)
+        idText.text = roomInfo.id.ToString();
+        countText.text = roomInfo.count.ToString();
+        if (roomInfo.status == 0)
         {
             statusText.text = "准备中";
         }
@@ -121,10 +121,68 @@ public class RoomListPanel : BasePanel
             statusText.text = "战斗中";
         }
         //按钮事件
-        btn.name=idText.text;
+        btn.name = idText.text;
         btn.onClick.AddListener(delegate ()
         {
-            //OnJoinClick(btn.name);
+            OnJoinClick(btn.name);
         });
+    }
+
+
+    //收到进入房间协议
+    public void OnMsgEnterRoom(MsgBase msgBase)
+    {
+        MsgEnterRoom msg = (MsgEnterRoom)msgBase;
+        //成功进入房间
+        if (msg.result == 0)
+        {
+            PanelManager.Open<RoomPanel>();
+            Close();
+        }
+        //进入房间失败
+        else
+        {
+            PanelManager.Open<TipPanel>("进入房间失败！");
+        }
+    }
+
+    //收到新建房间协议
+    public void OnMsgCreateRoom(MsgBase msgBase)
+    {
+        MsgCreateRoom msg = (MsgCreateRoom)msgBase;
+        //成功创建房间
+        if (msg.result == 0)
+        {
+            PanelManager.Open<TipPanel>("创建成功！");
+            PanelManager.Open<RoomPanel>();
+            Close();
+        }
+        //创建房间失败
+        else
+        {
+            PanelManager.Open<TipPanel>("创建房间失败！");
+        }
+    }
+
+    //点击加入房间按钮
+    public void OnJoinClick(string idString)
+    {
+        MsgEnterRoom msg = new MsgEnterRoom();
+        msg.id = int.Parse(idString);
+        NetManager.Send(msg);
+    }
+
+    //点击新建房间按钮
+    public void OnCreateClick()
+    {
+        MsgCreateRoom msg = new MsgCreateRoom();
+        NetManager.Send(msg);
+    }
+
+    //点击刷新按钮
+    public void OnReflashClick()
+    {
+        MsgGetRoomList msg = new MsgGetRoomList();
+        NetManager.Send(msg);
     }
 }
