@@ -369,6 +369,7 @@
 "Assets/Scripts/Panel/PanelManager.cs"
 "Assets/Scripts/Panel/RegisterPanel.cs"
 "Assets/Scripts/Panel/TipPanel.cs"
+"Assets/Scripts/Proto/BattleMsg.cs"
 "Assets/Scripts/Proto/ByteArray.cs"
 "Assets/Scripts/Proto/MsgBase.cs"
 "Assets/Scripts/Proto/MsgMove.cs"

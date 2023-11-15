@@ -25,8 +25,8 @@ public class RoomPanel : BasePanel
     //显示
     public override void OnShow(params object[] para)
     {
-        startButton = skin.transform.Find("CtrlPanel/StartButton").GetComponent<Button>();
-        closeButton = skin.transform.Find("CtrlPanel/CloseButton").GetComponent<Button>();
+        startButton = skin.transform.Find("StartButton").GetComponent<Button>();
+        closeButton = skin.transform.Find("CloseButton").GetComponent<Button>();
         content = skin.transform.Find("ListPanel/Scroll/Viewport/Content");
         playerObj = skin.transform.Find("Player").gameObject;
         //不激活玩家信息
@@ -54,7 +54,7 @@ public class RoomPanel : BasePanel
     }
 
     //收到玩家列表协议
-    public void OnMsgGetRoomInfo(MsgBase msgBase)
+    private void OnMsgGetRoomInfo(MsgBase msgBase)
     {
         MsgGetRoomInfo msg = (MsgGetRoomInfo)msgBase;
         //清除玩家列表
@@ -68,6 +68,7 @@ public class RoomPanel : BasePanel
         {
             return;
         }
+        print("msg.players.Length "+msg.players.Length);
         for (int i = 0; i < msg.players.Length; i++)
         {
             GeneratePlayerInfo(msg.players[i]);
@@ -77,6 +78,7 @@ public class RoomPanel : BasePanel
     //创建一个玩家单元
     public void GeneratePlayerInfo(PlayerInfo playerInfo)
     {
+        print("创建一个玩家单元！");
         //创建物体
         GameObject go = Instantiate(playerObj);
         go.transform.SetParent(content);
@@ -112,7 +114,7 @@ public class RoomPanel : BasePanel
         if (msg.result == 0)
         {
             PanelManager.Open<TipPanel>("退出房间！");
-            PanelManager.Open<RoomPanel>();
+            PanelManager.Open<RoomListPanel>();
             Close();
         }
         //退出房间失败

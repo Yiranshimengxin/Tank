@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Proto\NetManager.cs" />
     <Compile Include="Assets\Scripts\Panel\RegisterPanel.cs" />
     <Compile Include="Assets\Scripts\Logic\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\Proto\BattleMsg.cs" />
     <Compile Include="Assets\Scripts\Mudule\RoomListPanel.cs" />
     <Compile Include="Assets\Scripts\Proto\MsgMove.cs" />
     <Compile Include="Assets\Scripts\Proto\RoomMsg.cs" />
