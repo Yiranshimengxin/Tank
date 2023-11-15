@@ -110,13 +110,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 19910}
     - Class: 114
-      Script: {instanceID: 20580}
+      Script: {instanceID: 20582}
     - Class: 114
-      Script: {instanceID: 21054}
+      Script: {instanceID: 21056}
     - Class: 114
-      Script: {instanceID: 21062}
+      Script: {instanceID: 21064}
     - Class: 114
-      Script: {instanceID: 21380}
+      Script: {instanceID: 21382}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -508,7 +508,7 @@ ScriptsOnlyBuild:
     className: TipPanel
   - hash:
       serializedVersion: 2
-      Hash: 7ef86897d33292b2356eec47505cd37f
+      Hash: 3dff249d572b37b12161134a45e6bceb
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: CtrlTank
@@ -598,7 +598,7 @@ ScriptsOnlyBuild:
     className: UnityOnCancelMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 7ef86897d33292b2356eec47505cd37f
+      Hash: 3dff249d572b37b12161134a45e6bceb
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: BaseTank
@@ -1046,6 +1046,24 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: BattleManager
+  - hash:
+      serializedVersion: 2
+      Hash: 3dff249d572b37b12161134a45e6bceb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SyncTank
+  - hash:
+      serializedVersion: 2
+      Hash: af14e47d7b31d6830fb93af9833c92b5
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ResultPanel
   platform: 19
   scenePathNames:
   - Assets/Scenes/BattleField.unity

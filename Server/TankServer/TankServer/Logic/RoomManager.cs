@@ -63,7 +63,7 @@ public class RoomManager
     {
         foreach (Room room in rooms.Values)
         {
-            //room.Update();
+            room.Update();
         }
     }
 }

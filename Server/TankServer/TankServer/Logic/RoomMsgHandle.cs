@@ -127,4 +127,40 @@ public partial class MsgHandler
         msg.result = 0;
         player.Send(msg);
     }
+
+    //请求开始战斗
+    public static void MsgStartBattle(ClientState c, MsgBase msgBase)
+    {
+        MsgStartBattle msg = (MsgStartBattle)msgBase;
+        Player player = c.player;
+        if (player == null)
+        {
+            return;
+        }
+        //room
+        Room room = RoomManager.GetRoom(player.roomId);
+        if (room == null)
+        {
+            msg.result = 1;
+            player.Send(msg);
+            return;
+        }
+        //是否是房主
+        if (!room.IsOwner(player))
+        {
+            msg.result = 1;
+            player.Send(msg);
+            return;
+        }
+        //开战
+        if (!room.StartBattle())
+        {
+            msg.result = 1;
+            player.Send(msg);
+            return;
+        }
+        //成功
+        msg.result = 0;
+        player.Send(msg);
+    }
 }

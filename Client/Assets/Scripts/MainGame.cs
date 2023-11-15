@@ -12,6 +12,7 @@ public class MainGame : MonoBehaviour
     {
         //初始化
         PanelManager.Init();
+        BattleManager.Init();
         //打开登录面板
         PanelManager.Open<LoginPanel>();
         //网络监听
