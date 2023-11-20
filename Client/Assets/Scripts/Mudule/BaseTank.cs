@@ -28,6 +28,8 @@ public class BaseTank : MonoBehaviour
     public string id = "";
     //阵营
     public int camp = 0;
+    //刚体
+    protected Rigidbody rigidbody;
 
     public virtual void Init(string skinPath)
     {
@@ -36,7 +38,7 @@ public class BaseTank : MonoBehaviour
         skin.transform.parent = this.transform;
         skin.transform.localPosition = Vector3.zero;
         skin.transform.localEulerAngles = Vector3.zero;
-        gameObject.AddComponent<Rigidbody>();
+        rigidbody=gameObject.AddComponent<Rigidbody>();
 
         //炮塔炮管
         turret = skin.transform.Find("Head");

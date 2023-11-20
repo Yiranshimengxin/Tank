@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
         //攻击其他坦克
         if (hitTank != null)
         {
-            hitTank.Attacked(35);
+            SendMsgHit(tank, hitTank);
         }
         //显示爆炸效果
         GameObject explode = ResManager.LoadPrefab("Exp");
@@ -53,5 +53,26 @@ public class Bullet : MonoBehaviour
         //摧毁自身
         Destroy(go, 2);
         Destroy(gameObject);
+    }
+
+    //发送伤害协议
+    void SendMsgHit(BaseTank tank, BaseTank hitTank)
+    {
+        if (hitTank == null || tank == null)
+        {
+            return;
+        }
+        //不是自己发出的炮弹
+        if (tank.id != MainGame.id)
+        {
+            return;
+        }
+        MsgHit msg = new MsgHit();
+        msg.targetId = hitTank.id;
+        msg.id = tank.id;
+        msg.x = transform.position.x;
+        msg.y = transform.position.y;
+        msg.z = transform.position.z;
+        NetManager.Send(msg);
     }
 }

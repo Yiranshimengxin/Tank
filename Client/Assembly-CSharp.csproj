@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Mudule\Bullet.cs" />
     <Compile Include="Assets\Scripts\Mudule\BaseTank.cs" />
     <Compile Include="Assets\Scripts\Mudule\CtrlTank.cs" />
+    <Compile Include="Assets\Scripts\Proto\SyncMsg.cs" />
     <Compile Include="Assets\Scripts\Proto\NetManager.cs" />
     <Compile Include="Assets\Scripts\Panel\RegisterPanel.cs" />
     <Compile Include="Assets\Scripts\Proto\BattleMsg.cs" />

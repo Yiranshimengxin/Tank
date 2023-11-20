@@ -1,17 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class CtrlTank : BaseTank
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    //上一次发送同步信息的时间
+    private float lastSendSyncTime = 0;
+    //同步帧率
+    public static float syncInterval = 0.1f;
 
-    }
-
-    // Update is called once per frame
     new void Update()
     {
         base.Update();
@@ -22,6 +19,9 @@ public class CtrlTank : BaseTank
         MoveUpdate();
         TurretUpdate();
         FireUpdate();
+
+        //发送同步信息
+        SyncUpdate();
     }
 
     //移动控制
@@ -102,6 +102,36 @@ public class CtrlTank : BaseTank
         {
             return;
         }
-        Fire();
+        Bullet bullet= Fire();
+        //发射同步协议
+        MsgFire msg = new MsgFire();
+        msg.x = transform.position.x;
+        msg.y = transform.position.y;
+        msg.z = transform.position.z;
+        msg.ex = transform.eulerAngles.x;
+        msg.ey = transform.eulerAngles.y;
+        msg.ez = transform.eulerAngles.z;
+        NetManager.Send(msg);
+    }
+
+    //发送同步信息
+    public void SyncUpdate()
+    {
+        //时间间隔判断
+        if (Time.deltaTime - lastSendSyncTime < syncInterval)
+        {
+            return;
+        }
+        lastSendSyncTime = Time.time;
+        //发送同步协议
+        MsgSyncTank msg = new MsgSyncTank();
+        msg.x = transform.position.x;
+        msg.y = transform.position.y;
+        msg.z = transform.position.z;
+        msg.ex = transform.eulerAngles.x;
+        msg.ey = transform.eulerAngles.y;
+        msg.ez = transform.eulerAngles.z;
+        msg.turretY = transform.localEulerAngles.y;
+        NetManager.Send(msg);
     }
 }

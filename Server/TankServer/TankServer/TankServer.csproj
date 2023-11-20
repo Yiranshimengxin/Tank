@@ -66,6 +66,8 @@
     <Compile Include="Proto\BattleMsg.cs" />
     <Compile Include="Proto\NotepadMsg.cs" />
     <Compile Include="Proto\RoomMsg.cs" />
+    <Compile Include="Proto\SyncMsg.cs" />
+    <Compile Include="Proto\SyncMsgHandle.cs" />
     <Compile Include="Proto\Sysmsg.cs" />
     <Compile Include="Proto\SysMsgHandler.cs" />
   </ItemGroup>

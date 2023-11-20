@@ -14,6 +14,62 @@ public class BattleManager : MonoBehaviour
         NetManager.AddMsgListener("MsgEnterBattle", OnMsgEnterBattle);
         NetManager.AddMsgListener("MsgBattleResult", OnMsgBattleResult);
         NetManager.AddMsgListener("MsgLeaveBattle", OnMsgLeaveBattle);
+
+        NetManager.AddMsgListener("MsgSyncTank", OnMsgSyncTank);
+        NetManager.AddMsgListener("MsgFire", OnMsgFire);
+        NetManager.AddMsgListener("MsgHit", OnMsgHit);
+    }
+
+    //收到击中协议
+    private static void OnMsgHit(MsgBase msgBase)
+    {
+        MsgHit msg = (MsgHit)msgBase;
+        //查找坦克
+        BaseTank tank = GetTank(msg.targetId);
+        if (tank == null)
+        {
+            return;
+        }
+        //开火
+        tank.Attacked(msg.damage);
+    }
+
+    //收到开火协议
+    private static void OnMsgFire(MsgBase msgBase)
+    {
+        MsgFire msg = (MsgFire)msgBase;
+        //不同步自己
+        if (msg.id == MainGame.id)
+        {
+            return;
+        }
+        //查找坦克
+        SyncTank tank = (SyncTank)GetTank(msg.id);
+        if (tank == null)
+        {
+            return;
+        }
+        //开火
+        tank.SyncFire(msg);
+    }
+
+    //收到同步协议
+    private static void OnMsgSyncTank(MsgBase msgBase)
+    {
+        MsgSyncTank msg = (MsgSyncTank)msgBase;
+        //不同步自己
+        if (msg.id == MainGame.id)
+        {
+            return;
+        }
+        //查找坦克
+        SyncTank tank = (SyncTank)GetTank(msg.id);
+        if (tank == null)
+        {
+            return;
+        }
+        //移动同步
+        tank.SyncPos(msg);
     }
 
     //收到玩家退出协议

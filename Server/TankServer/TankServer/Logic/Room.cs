@@ -368,6 +368,7 @@ public class Room
     //定时更新
     public void Update()
     {
+        Console.WriteLine("Room.Update！！！");
         //状态判断
         if (status != Status.FIGHT)
         {
