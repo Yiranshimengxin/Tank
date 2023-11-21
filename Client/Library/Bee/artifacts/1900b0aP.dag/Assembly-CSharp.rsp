@@ -330,6 +330,7 @@
 "Assets/Scripts/Proto/NetManager.cs"
 "Assets/Scripts/Proto/NotepadMsg.cs"
 "Assets/Scripts/Proto/RoomMsg.cs"
+"Assets/Scripts/Proto/SyncMsg.cs"
 "Assets/Scripts/Proto/Sysmsg.cs"
 -langversion:9.0
 

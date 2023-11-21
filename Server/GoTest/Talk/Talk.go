@@ -144,6 +144,59 @@ func Test4_1() {
 	}
 }
 
+// 绘制正切曲线
+func Test4_2() {
+	const size = 300
+	pic := image.NewGray(image.Rect(0, 0, size, size))
+	for x := 0; x < size; x++ {
+		for y := 0; y < size; y++ {
+			pic.SetGray(x, y, color.Gray{255})
+		}
+	}
+
+	for x := 0; x < size; x++ {
+		s := float64(x) * 2 * math.Pi / size
+		y := size/2 - math.Tan(s)*size/2
+		// 调整 y 值的范围，以防止越界
+		y = math.Max(0, math.Min(float64(size-1), y))
+		pic.SetGray(x, int(y), color.Gray{0})
+	}
+
+	file, err := os.Create("Test.png")
+	if err != nil {
+		log.Fatal(err)
+	}
+	png.Encode(file, pic)
+	file.Close()
+}
+
+// 绘制余切曲线
+func Test4_3() {
+	const size = 300
+	pic := image.NewGray(image.Rect(0, 0, size, size))
+	for x := 0; x < size; x++ {
+		for y := 0; y < size; y++ {
+			pic.SetGray(x, y, color.Gray{255})
+		}
+	}
+
+	for x := 0; x < size; x++ {
+		s := float64(x) * 2 * math.Pi / size
+		// 使用 math.Atan 获取角度的反正切值，然后取其倒数
+		y := size/2 - (1/math.Tan(s))*size/2
+		// 调整 y 值的范围，以防止越界
+		y = math.Max(0, math.Min(float64(size-1), y))
+		pic.SetGray(x, int(y), color.Gray{0})
+	}
+
+	file, err := os.Create("Test.png")
+	if err != nil {
+		log.Fatal(err)
+	}
+	png.Encode(file, pic)
+	file.Close()
+}
+
 // 随机数游戏
 func Test5() {
 	rand.Seed(time.Now().UnixNano())
