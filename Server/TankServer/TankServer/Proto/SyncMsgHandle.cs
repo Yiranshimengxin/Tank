@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -102,6 +103,10 @@ public partial class MsgHandler
         //状态
         int damage = 35;
         targetPlayer.hp -= damage;
+        //if(targetPlayer.hp <= 0)
+        //{
+        //    room.Update();
+        //}
         //广播
         msg.id = player.id;
         msg.hp = player.hp;

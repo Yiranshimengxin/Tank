@@ -7,7 +7,7 @@ public class CtrlTank : BaseTank
     //上一次发送同步信息的时间
     private float lastSendSyncTime = 0;
     //同步帧率
-    public static float syncInterval = 0.1f;
+    public static float syncInterval = 0.01f;
 
     new void Update()
     {
@@ -19,7 +19,6 @@ public class CtrlTank : BaseTank
         MoveUpdate();
         TurretUpdate();
         FireUpdate();
-
         //发送同步信息
         SyncUpdate();
     }
@@ -102,15 +101,16 @@ public class CtrlTank : BaseTank
         {
             return;
         }
-        Bullet bullet= Fire();
+        lastFireTime=Time.time;
+        Bullet bullet = Fire();
         //发射同步协议
         MsgFire msg = new MsgFire();
-        msg.x = transform.position.x;
-        msg.y = transform.position.y;
-        msg.z = transform.position.z;
-        msg.ex = transform.eulerAngles.x;
-        msg.ey = transform.eulerAngles.y;
-        msg.ez = transform.eulerAngles.z;
+        msg.x = bullet.transform.position.x;
+        msg.y = bullet.transform.position.y;
+        msg.z = bullet.transform.position.z;
+        msg.ex = bullet.transform.eulerAngles.x;
+        msg.ey = bullet.transform.eulerAngles.y;
+        msg.ez = bullet.transform.eulerAngles.z;
         NetManager.Send(msg);
     }
 
@@ -118,7 +118,7 @@ public class CtrlTank : BaseTank
     public void SyncUpdate()
     {
         //时间间隔判断
-        if (Time.deltaTime - lastSendSyncTime < syncInterval)
+        if (Time.time - lastSendSyncTime < syncInterval)
         {
             return;
         }
@@ -131,7 +131,8 @@ public class CtrlTank : BaseTank
         msg.ex = transform.eulerAngles.x;
         msg.ey = transform.eulerAngles.y;
         msg.ez = transform.eulerAngles.z;
-        msg.turretY = transform.localEulerAngles.y;
+        msg.turretY = turret.localEulerAngles.y;
+        msg.gunX = gun.localEulerAngles.x;
         NetManager.Send(msg);
     }
 }

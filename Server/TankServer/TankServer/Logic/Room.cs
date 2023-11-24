@@ -28,15 +28,15 @@ public class Room
     private static float[,,] birthConfig = new float[2, 3, 6]
     {
         {
-            {90,3,900,0,0,0},
-            {440,3,900,0,0,0},
-            {740,3,900,0,0,0},
+            {90,1,10,0,0,0},
+            {440,1,900,0,0,0},
+            {740,1,900,0,0,0},
 
         },
         {
-            {90,3,30,0,0,0},
-            {260,3,-30,0,0,0},
-            {440,3,30,0,0,0},
+            {90,1,30,0,0,0},
+            {260,1,-30,0,0,0},
+            {440,1,30,0,0,0},
         }
     };
 
@@ -198,6 +198,7 @@ public class Room
         //战斗状态退出
         if (status == Status.FIGHT)
         {
+            Update();
             player.data.lost++;
             MsgLeaveBattle msg = new MsgLeaveBattle();
             msg.id = player.id;
@@ -374,10 +375,10 @@ public class Room
             return;
         }
         //时间判断
-        if (NetManager.GetTimeStamp() - lastJudgeTime < 3f)
-        {
-            return;
-        }
+        //if (NetManager.GetTimeStamp() - lastJudgeTime < 3f)
+        //{
+        //    return;
+        //}
         lastJudgeTime = NetManager.GetTimeStamp();
         //胜负判断
         int winCamp = Judgement();

@@ -90,7 +90,6 @@ public class BattleManager : MonoBehaviour
     //收到战斗结束协议
     private static void OnMsgBattleResult(MsgBase msgBase)
     {
-        Debug.Log("收到了MsgBattleResult！！！");
         MsgBattleResult msg = (MsgBattleResult)msgBase;
         //判断胜利还是失败
         bool isWin = false;

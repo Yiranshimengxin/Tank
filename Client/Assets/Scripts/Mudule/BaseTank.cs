@@ -90,8 +90,8 @@ public class BaseTank : MonoBehaviour
             GameObject obj = ResManager.LoadPrefab("Fire");
             GameObject exp = Instantiate(obj, transform.position, transform.rotation);
             exp.transform.SetParent(transform);
-            Destroy(exp, 5);
-            Invoke("DestroyTank", 5);
+            //Destroy(exp, 5);
+            //Invoke("DestroyTank", 5);
         }
     }
 

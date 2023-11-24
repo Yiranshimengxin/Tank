@@ -16,6 +16,7 @@ public class MsgSyncTank : MsgBase
     public float ey = 0;
     public float ez = 0;
     public float turretY = 0;
+    public float gunX = 0;
     //服务端补充
     public string id = "";  //哪个坦克
 }
@@ -35,6 +36,7 @@ public class MsgFire : MsgBase
     public float ey = 0;
     public float ez = 0;
     public float turretY = 0;
+    public float gunX = 0;
     //服务端补充
     public string id = "";  //哪个坦克
 }

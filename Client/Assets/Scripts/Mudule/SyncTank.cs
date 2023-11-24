@@ -65,7 +65,10 @@ public class SyncTank : BaseTank
         //炮塔
         Vector3 le = turret.localEulerAngles;
         le.y = msg.turretY;
+        Vector3 ge = gun.localEulerAngles;
+        ge.x = msg.gunX;
         turret.localEulerAngles = le;
+        gun.localEulerAngles = ge;
     }
 
     //开火
